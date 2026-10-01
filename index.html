@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Munkavállalói ismeretek – tudásellenőrzés</title>
+  <link rel="stylesheet" href="assets/style.css?v=2">
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">TUDÁSELLENŐRZÉS</div>
+      <h1>Munkavállalói ismeretek</h1>
+    </div>
+    <div class="top-meta">
+      <span class="repo-badge">GitHub Pages</span>
+      <span id="timerBadge" class="badge hidden">Hátralévő idő: <strong id="timer">--:--</strong></span>
+      <span id="incidentBadge" class="badge subtle hidden">Ablakváltás: <strong id="incidentCount">0</strong></span>
+    </div>
+  </header>
+
+  <main>
+    <section id="loadingView" class="card center-card">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Betöltés…</p>
+    </section>
+
+    <section id="startView" class="card hidden">
+      <div class="intro-grid">
+        <div>
+          <div class="section-kicker">INDÍTÁS</div>
+          <h2>Adatok megadása</h2>
+          <p class="lead">A teszt 26 kérdésből, összesen 30 pontból áll. A kérdések és a válaszlehetőségek minden új kitöltésnél véletlenszerű sorrendben jelennek meg.</p>
+        </div>
+        <div class="security-note">
+          <strong>Csaláscsökkentett mód</strong>
+          <p>Egyszerre egy kérdés látható, az oldalváltást a rendszer számolja, a másolás és több gyakori böngészős gyorsbillentyű le van tiltva. A már lezárt kérdéshez alapbeállítás szerint nem lehet visszalépni.</p>
+        </div>
+      </div>
+
+      <form id="startForm" class="form-grid" autocomplete="off">
+        <label>
+          <span>Tanuló neve</span>
+          <input id="studentName" name="student_name" type="text" maxlength="80" required autocomplete="off" placeholder="Vezetéknév Keresztnév">
+        </label>
+        <label>
+          <span>Osztály</span>
+          <input id="className" name="class_name" type="text" maxlength="40" required autocomplete="off" placeholder="pl. 11.A">
+        </label>
+        <label class="consent-row">
+          <input id="rulesAccepted" type="checkbox" required>
+          <span>Tudomásul veszem, hogy a teszt közben az oldal elhagyását a rendszer eseményként rögzíti ezen a böngészőn.</span>
+        </label>
+        <button class="btn primary wide" type="submit">Teszt indítása</button>
+      </form>
+      <p id="startError" class="error-text hidden"></p>
+    </section>
+
+    <section id="testView" class="hidden">
+      <div class="test-header card compact">
+        <div>
+          <div class="muted" id="studentLine"></div>
+          <div class="progress-label"><strong id="progressText">1 / 26</strong><span id="answeredText">0 megválaszolva</span></div>
+        </div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+
+      <article class="card question-card">
+        <div class="question-meta">
+          <span id="questionType" class="pill">Egyszeres válasz</span>
+          <span id="questionPoints" class="muted">1 pont</span>
+        </div>
+        <h2 id="questionText">Kérdés</h2>
+        <p id="multiHint" class="hint hidden"></p>
+        <div id="options" class="options"></div>
+        <p id="questionError" class="error-text hidden"></p>
+        <p id="lockedNote" class="locked-note hidden">A következő kérdésre lépés után ezt a választ már nem lehet módosítani.</p>
+        <div class="nav-row">
+          <button id="prevBtn" class="btn secondary" type="button">← Előző</button>
+          <button id="nextBtn" class="btn primary" type="button">Mentés és következő →</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="resultView" class="hidden">
+      <div class="result-hero card">
+        <div>
+          <div class="section-kicker">EREDMÉNY</div>
+          <h2 id="resultName">Eredmény</h2>
+          <p id="resultMeta" class="muted"></p>
+        </div>
+        <div class="score-ring" id="scoreRing">
+          <strong id="resultPercent">0%</strong>
+          <span id="resultGrade">-</span>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="stat card compact"><span>Pontszám</span><strong id="resultScore">0 / 30</strong></div>
+        <div class="stat card compact"><span>Idő</span><strong id="resultTime">0:00</strong></div>
+        <div class="stat card compact"><span>Ablakváltás</span><strong id="resultIncidents">0</strong></div>
+      </div>
+
+      <div class="card actions-card">
+        <button id="pdfBtn" class="btn primary" type="button">PDF eredménylap letöltése</button>
+        <button id="newAttemptBtn" class="btn secondary" type="button">Új tanuló / új kitöltés</button>
+      </div>
+
+      <div class="card">
+        <div class="result-list-head">
+          <div>
+            <div class="section-kicker">RÉSZLETES ÉRTÉKELÉS</div>
+            <h2>Saját megoldások</h2>
+          </div>
+          <span id="revealNote" class="pill muted-pill"></span>
+        </div>
+        <div id="resultDetails" class="result-details"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Munkavállalói ismeretek – GitHub Pages tudásellenőrző</span>
+  </footer>
+</div>
+
+<div id="toast" class="toast hidden" role="status"></div>
+<script src="assets/config.js?v=2"></script>
+<script src="assets/questions.js?v=2"></script>
+<script src="assets/report.js?v=2"></script>
+<script src="assets/app.js?v=2"></script>
+</body>
+</html>
